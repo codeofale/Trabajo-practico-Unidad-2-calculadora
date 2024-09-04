@@ -1,25 +1,55 @@
 //seteamos las variables
-const numeroUno = document.getElementById("numero1");
-const numeroDos = document.getElementById("numero2");
-const operacion = document.getElementById("operacion");
+let numeroUno = document.getElementById("numero1");
+let numeroDos = document.getElementById("numero2");
+const tipoOperacion = document.querySelector("#operacion");
 const textoError = document.getElementById("textoError");
 let cartelError;
-
-console.log("operacion: ",operacion);
+let operacion;
 //cuando se da click activa la funcion de la operacion
-operacion.addEventListener("click", handleAddEventList);
+tipoOperacion.addEventListener("click", handleAddEventList);
 
 function handleAddEventList(e) {
   e.preventDefault();
   /*controlamos SOLO si los dos son numeros entonces podemos operar,
    de lo contrario mandamos un mensaje de error al usuario*/
   if (/^\d+$/.test(numeroUno.value) && /^\d+$/.test(numeroDos.value)) {
-    console.log("SE SUMAN LOS NUMEROS");
-    /*chequeamos que boton fue apretado para saber que operacion realizar, vammos a hacer un switch para 
-    ir cambiando de operacion*/
-    operacion.addEventListener("click",function(event){
-        console.log("fue clickeado el boton: ",event.target.id);
-    });
+    /*guardamos el tipo de operacion en una variable para usarla en el switch*/
+    operacion = e.target.id;
+    primerValor = parseInt(numeroUno.value,10)
+    segundoValor = parseInt(numeroDos.value,10)
+    let resultadoDeOperacion;
+    console.log(operacion);
+    switch (operacion) {
+        case "suma":
+            resultadoDeOperacion = primerValor + segundoValor;
+            break;
+        case "resta":
+            resultadoDeOperacion = primerValor - segundoValor;
+            break;
+        case "div":
+            resultadoDeOperacion = primerValor / segundoValor;
+            break;
+        case "multi":
+            resultadoDeOperacion = primerValor * segundoValor;
+            break;
+                        
+        default:
+            console.log("DEFAULT");
+            break;
+    }
+    if (textoError.querySelector("#resultadoOperacion")) {
+        textoError.removeChild(cartelError);
+      } else {
+        cartelError = document.createElement("label");
+        cartelError.setAttribute("id", "resultadoOperacion");
+        cartelError.innerHTML = "el resultado es : "+
+          resultadoDeOperacion;
+        textoError.appendChild(cartelError);
+        
+      }
+    //console.log("SE SUMAN LOS NUMEROS");
+    //console.log("RESULTADO ES : ",resultadoDeOperacion);
+    
   } else { 
     /* si alguno de los dos no es un numero entonces mostramos el cartel de error, controlando que si ya existe
     no se cree nuevamente */
