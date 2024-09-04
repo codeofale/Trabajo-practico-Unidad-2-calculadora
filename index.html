@@ -3,9 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <title>Calculadora</title>
 </head>
 <body>
-    
+    <label>Eliga un numero para iniciar la operacion
+        <input type="text" placeholder="1,2,100..." id="numero1">
+    </label>
+    <br>
+    <label>Eliga otro numero
+        <input type="text" placeholder="1,2,100..." id="numero2">
+    </label>
+    <br>
+    <label id="textoError"></label>
+    <br>
+    <label id="operacion">
+        <button id="suma">suma</button>
+        <button id="resta">resta</button>
+        <button id="multi">multiplicacion</button>
+        <button id="div">division</button>
+    </label>
+<script src="index.js"></script>
 </body>
 </html>
