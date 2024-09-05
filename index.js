@@ -5,6 +5,9 @@ const tipoOperacion = document.querySelector("#operacion");
 const textoError = document.getElementById("textoError");
 let cartelError;
 let operacion;
+let resultadoOperacion;
+let separadorOperacion;
+let separadorTextoError;
 //cuando se da click activa la funcion de la operacion
 tipoOperacion.addEventListener("click", handleAddEventList);
 
@@ -38,14 +41,16 @@ function handleAddEventList(e) {
             break;
     }
     if (textoError.querySelector("#resultadoOperacion")) {
-        textoError.removeChild(cartelError);
+        textoError.removeChild(resultadoOperacion);
+        textoError.removeChild(separadorOperacion);
       } else {
-        cartelError = document.createElement("label");
-        cartelError.setAttribute("id", "resultadoOperacion");
-        cartelError.innerHTML = "el resultado es : "+
+        resultadoOperacion = document.createElement("label");
+        resultadoOperacion.setAttribute("id", "resultadoOperacion");
+        resultadoOperacion.innerHTML = "el resultado es : "+
           resultadoDeOperacion;
-        textoError.appendChild(cartelError);
-        
+          separadorOperacion = document.createElement("br");
+        textoError.appendChild(resultadoOperacion);
+        textoError.appendChild(separadorOperacion);
       }
     //console.log("SE SUMAN LOS NUMEROS");
     //console.log("RESULTADO ES : ",resultadoDeOperacion);
@@ -55,13 +60,15 @@ function handleAddEventList(e) {
     no se cree nuevamente */
     if (textoError.querySelector("#mensajeError")) {
       textoError.removeChild(cartelError);
+      textoError.removeChild(separadorTextoError);  
     } else {
       cartelError = document.createElement("label");
       cartelError.setAttribute("id", "mensajeError");
       cartelError.innerHTML =
         "el campo debe ser numerico y no puede estar vacio";
+        separadorTextoError = document.createElement("br");
       textoError.appendChild(cartelError);
-      
+      textoError.appendChild(separadorTextoError);
     }
   }
 }
